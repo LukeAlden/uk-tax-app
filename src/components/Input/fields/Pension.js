@@ -5,8 +5,9 @@ import * as actions from '../../../store/actions/taxCalculator';
 
 const pension = (props) => (
     <div>
-        Enter any pension contributions:
+        <label htmlFor="pension">Enter any pension contributions:</label>
         <input
+            id="pension"
             style={{ margin: "10px" }}
             type="number"
             onChange={event => setPension(event, props)} />

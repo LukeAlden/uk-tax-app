@@ -4,9 +4,9 @@ import { selectIncomeTax } from '../../../store/reducers/selector'
 
 const incomeTax = (props) => {
     return (
-        <div>
+        <p>
             Income tax paid: £{props.incomeTax}
-        </div>
+        </p>
     )
 }
 

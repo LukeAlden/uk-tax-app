@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { selectPostgradPayment } from '../../../store/reducers/selector';
 
 const postgradPayment = (props) => (
-    <div>
+    <p>
         Your postgraduate loan repayment is: £{props.postgradPayment.toFixed(2)}
-    </div>
+    </p>
 )
 
 const mapStatetoProps = state => {

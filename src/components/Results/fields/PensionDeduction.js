@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { selectPensionDeduction } from '../../../store/reducers/selector';
 
 const pensionDeduction = (props) => (
-    <div>
+    <p>
         Your pension contributions equal: £{parseFloat(props.pensionDeduction).toFixed(2)}
-    </div>
+    </p>
 )
 
 const mapStatetoProps = state => {

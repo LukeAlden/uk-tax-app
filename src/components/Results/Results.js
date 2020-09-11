@@ -12,12 +12,13 @@ const results = (props) => {
     if (!props.shouldRenderResults) {
         return (
             <div>
-                Fill in the form and submit to get your results!
+                <h4>Fill in the form and submit to get your results!</h4>
             </div>
         )
     }
     return (
         <div>
+            <h4>Your results:</h4>
             <TakeHomePay />
             <IncomeTax />
             <NationalInsurance />

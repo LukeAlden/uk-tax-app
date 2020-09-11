@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import BaseIncome from './fields/BaseIncome';
-import Pension from './fields/Pension';
-import UndergraduateLoan from './fields/UndergraduateLoan';
-import PostgraduateLoan from './fields/PostgraduateLoan';
+import BaseIncome from './fields/BaseIncome'
+import Pension from './fields/Pension'
+import UndergraduateLoan from './fields/UndergraduateLoan'
+import PostgraduateLoan from './fields/PostgraduateLoan'
 
-import * as actions from '../../store/actions/taxCalculator';
+import * as actions from '../../store/actions/taxCalculator'
+
+import classes from './Input.module.css'
 
 class Input extends Component {
     render() {
@@ -16,7 +18,9 @@ class Input extends Component {
                 <Pension />
                 <UndergraduateLoan />
                 <PostgraduateLoan />
-                <button onClick={this.onButtonClick}>Calculate Tax</button>
+                <button
+                    className={classes.submit}
+                    onClick={this.onButtonClick}>Calculate Tax</button>
             </div>
         )
     }
@@ -32,4 +36,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Input);
+export default connect(null, mapDispatchToProps)(Input)

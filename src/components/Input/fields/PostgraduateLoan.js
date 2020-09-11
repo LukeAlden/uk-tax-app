@@ -5,8 +5,9 @@ import * as actions from '../../../store/actions/taxCalculator'
 
 const postgraduateLoan = (props) => (
     <div>
-        Do you have a postgraduate loan?
+        <label htmlFor="postgradLoan">Do you have a postgraduate loan?</label>
         <input
+            id="postgradLoan"
             style={{ margin: "10px" }}
             type="checkbox"
             onChange={event => props.setPostgradLoan(event.target.checked)} />

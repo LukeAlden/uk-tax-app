@@ -4,9 +4,9 @@ import { selectNationalInsurance } from '../../../store/reducers/selector'
 
 const nationalInsurance = (props) => {
     return (
-        <div>
+        <p>
             National insurance paid: £{props.nationalInsurance}
-        </div>
+        </p>
     )
 }
 

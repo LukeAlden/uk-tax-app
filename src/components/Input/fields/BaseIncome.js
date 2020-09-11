@@ -5,8 +5,9 @@ import * as actions from '../../../store/actions/taxCalculator';
 
 const baseIncome = (props) => (
     <div>
-        Enter your annual income: £
+        <label htmlFor="income">Enter your annual income: £</label>
         <input
+            id="income"
             style={{ margin: "10px" }}
             type="number"
             min="0"

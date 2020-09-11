@@ -1,11 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import Input from '../Input/Input';
-import Results from '../Results/Results';
+import Input from '../Input/Input'
+import Results from '../Results/Results'
+
+import classes from './TaxCalculator.module.css'
 
 const TaxCalculator = () => (
-    <div>
-        UK Tax Calculator:
+    <div className={classes.TaxCalculator}>
+        <h3>UK Tax Calculator:</h3>
         <hr />
         <Input />
         <hr />
@@ -13,4 +15,4 @@ const TaxCalculator = () => (
     </div>
 )
 
-export default TaxCalculator;
+export default TaxCalculator
