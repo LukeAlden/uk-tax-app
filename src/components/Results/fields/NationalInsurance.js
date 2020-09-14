@@ -5,7 +5,7 @@ import { selectNationalInsurance } from '../../../store/reducers/selector'
 const nationalInsurance = (props) => {
     return (
         <p>
-            National insurance paid: £{props.nationalInsurance}
+            National insurance paid: £{props.nationalInsurance.toFixed(2)}
         </p>
     )
 }

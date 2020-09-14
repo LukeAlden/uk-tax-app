@@ -5,7 +5,7 @@ import { selectIncomeTax } from '../../../store/reducers/selector'
 const incomeTax = (props) => {
     return (
         <p>
-            Income tax paid: £{props.incomeTax}
+            Income tax paid: £{props.incomeTax.toFixed(2)}
         </p>
     )
 }

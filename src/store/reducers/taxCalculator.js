@@ -26,7 +26,7 @@ const updateInput = (state, input) => {
             ...input
         }
     }
-    console.log(newState)
+    // console.log(newState)
     return newState
 }
 
