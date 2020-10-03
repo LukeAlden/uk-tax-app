@@ -8,8 +8,6 @@ import PostgraduateLoan from './fields/PostgraduateLoan'
 
 import * as actions from '../../store/actions/taxCalculator'
 
-import classes from './Input.module.css'
-
 class Input extends Component {
     render() {
         return (
