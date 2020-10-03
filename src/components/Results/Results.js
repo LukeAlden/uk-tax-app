@@ -1,43 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import TakeHomePay from './fields/TakeHomePay';
-import PensionDeduction from './fields/PensionDeduction';
-import IncomeTax from './fields/IncomeTax';
-import UndergradPayment from './fields/UndergradPayment';
-import PostgradPayment from './fields/PostgradPayment';
-import NationalInsurance from './fields/NationalInsurance';
+import * as selector from '../../store/reducers/selector';
 
 const results = (props) => {
     if (!props.shouldRenderResults) {
-        return (
-            <div>
-                <h4>Fill in the form and submit to get your results!</h4>
-            </div>
-        )
+        return getResultsPlaceholder()
+    } else {
+        return getResults(props);
     }
-    return (
-        <div>
-            <h4>Your results:</h4>
-            <TakeHomePay />
-            <IncomeTax />
-            <NationalInsurance />
-            <PensionDeduction />
-            <UndergradPayment />
-            <PostgradPayment />
-            {disclaimer()}
-        </div>
-    );
 }
 
-const disclaimer = () => (
-    <p>*These results were calculated after making a number of assumptions and are in no way guaranteed to be accurate.</p>
+const getResultsPlaceholder = () => (
+    <div>
+        <h4>Fill in the form and submit to get your results!</h4>
+    </div>
+)
+
+const getResults = (props) => (
+    <div>
+        <p>Your net income is: £{props.takeHomePay.toFixed(2)}</p>
+        <p>Income tax paid: £{props.incomeTax.toFixed(2)}</p>
+        <p>National insurance paid: £{props.nationalInsurance.toFixed(2)}</p>
+        <p>Your pension contributions equal: £{parseFloat(props.pensionDeduction).toFixed(2)}</p>
+        <p>Your undergraduate loan repayment is: £{props.undergradPayment.toFixed(2)}</p>
+        <p>Your postgraduate loan repayment is: £{props.postgradPayment.toFixed(2)}</p>
+        <p>*These results were calculated after making a number of assumptions and are in no way guaranteed to be accurate.</p>
+    </div>
 )
 
 const mapStateToProps = state => {
     return {
         shouldRenderResults: state.shouldRenderResults,
-        income: state.income
+        takeHomePay: selector.selectTakeHomePay(state),
+        incomeTax: selector.selectIncomeTax(state),
+        nationalInsurance: selector.selectNationalInsurance(state),
+        pensionDeduction: selector.selectPensionDeduction(state),
+        undergradPayment: selector.selectUndergradPayment(state),
+        postgradPayment: selector.selectPostgradPayment(state)
     }
 }
 

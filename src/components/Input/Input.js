@@ -13,19 +13,19 @@ import classes from './Input.module.css'
 class Input extends Component {
     render() {
         return (
-            <div>
+            <form onSubmit={this.submit}>
+                {/* can you use a single form for the input */}
                 <BaseIncome />
                 <Pension />
                 <UndergraduateLoan />
                 <PostgraduateLoan />
-                <button
-                    className={classes.submit}
-                    onClick={this.onButtonClick}>Calculate Tax</button>
-            </div>
+                <input type="submit" value="Calculate Tax!" />
+            </form>
         )
     }
 
-    onButtonClick = () => {
+    submit = (event) => {
+        event.preventDefault();
         this.props.onSubmit();
     }
 }
