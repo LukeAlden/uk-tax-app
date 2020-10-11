@@ -7,18 +7,24 @@ import UndergraduateLoan from './fields/UndergraduateLoan'
 import PostgraduateLoan from './fields/PostgraduateLoan'
 
 import * as actions from '../../store/actions/taxCalculator'
+import ExtraInput from './fields/ExtraInput';
 
 class Input extends Component {
     render() {
         return (
-            <form onSubmit={this.submit}>
-                {/* can you use a single form for the input */}
-                <BaseIncome />
-                <Pension />
-                <UndergraduateLoan />
-                <PostgraduateLoan />
-                <input type="submit" value="Calculate Tax!" />
-            </form>
+            <div>
+                <form onSubmit={this.submit}>
+                    <button type="submit" style={{ display: "none" }}>Submit</button>
+                    <BaseIncome />
+                    <Pension />
+                    <UndergraduateLoan />
+                    <PostgraduateLoan />
+                    <ExtraInput />
+                </form>
+                <button
+                    style={{ margin: "10px" }}
+                    onClick={this.submit}>Calculate Tax!</button>
+            </div>
         )
     }
 

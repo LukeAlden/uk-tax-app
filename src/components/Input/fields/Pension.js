@@ -1,11 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import * as actions from '../../../store/actions/taxCalculator';
+import * as actions from '../../../store/actions/taxCalculator'
 
 const pension = (props) => (
     <div>
-        <label htmlFor="pension">Enter any pension contributions:</label>
+        <label
+            htmlFor="pension">Enter any pension contributions:</label>
         <input
             id="pension"
             style={{ margin: "10px" }}
@@ -17,13 +18,15 @@ const pension = (props) => (
             name="pensionType"
             onChange={event => setPensionType(event, props)}
             defaultChecked />
-        <label htmlFor="percent">%</ label>
+        <label
+            htmlFor="percent">%</ label>
         <input
             type="radio"
             id="pounds"
             name="pensionType"
             onChange={event => setPensionType(event, props)} />
-        <label htmlFor="pounds">£ / year</ label>
+        <label
+            htmlFor="pounds">£ / year</ label>
     </div>
 )
 
