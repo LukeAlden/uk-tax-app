@@ -25,19 +25,19 @@ const studentLoan = {
     }
 }
 
-// we can eventually use Reselector here for performance optimisation
+// we can eventually use Reselect here for performance optimisation
 
 export const selectTakeHomePay = (state) => {
-    return state.input.income
+    return selectTaxableIncome(state)
         - selectIncomeTax(state)
         - selectNationalInsurance(state)
-        - selectPensionDeduction(state)
         - selectUndergradPayment(state)
         - selectPostgradPayment(state)
+        - extraPostTaxDeduction(state)
 }
 
 export const selectTaxableIncome = (state) => {
-    return state.input.income - selectPensionDeduction(state)
+    return state.input.income - selectPensionDeduction(state) - extraPreTaxDeduction(state)
 }
 
 export const selectIncomeTax = (state) => {
@@ -73,12 +73,41 @@ export const selectPensionDeduction = (state) => {
 
 export const selectUndergradPayment = (state) => {
     return state.input.undergradLoan
-        ? Math.max((state.input.income - studentLoan.ug.threshold) * studentLoan.ug.rate, 0)
+        ? Math.max((selectTaxableIncome(state) - studentLoan.ug.threshold) * studentLoan.ug.rate, 0)
         : 0
 }
 
 export const selectPostgradPayment = (state) => {
     return state.input.postgradLoan
-        ? Math.max((state.input.income - studentLoan.pg.threshold) * studentLoan.pg.rate, 0)
+        ? Math.max((selectTaxableIncome(state) - studentLoan.pg.threshold) * studentLoan.pg.rate, 0)
         : 0
+}
+
+export const selectExtraInputs = state => {
+    return state.input.extraInput
+}
+
+export const selectExtraInputsSum = state => {
+    return extraPreTaxDeduction(state) + extraPostTaxDeduction(state)
+}
+
+const extraPreTaxDeduction = state => {
+    const preTaxDeductions = selectExtraInputs(state).filter(deduction => deduction.pretax)
+    return preTaxDeductions
+        .map(deduction => calculateDeductionAmount(deduction, state.input.income))
+        .reduce((acc, deduction) => acc + deduction, 0)
+}
+
+const extraPostTaxDeduction = state => {
+    const preTaxDeductions = selectExtraInputs(state).filter(deduction => !deduction.pretax)
+    return preTaxDeductions
+        .map(deduction => calculateDeductionAmount(deduction))
+        .reduce((acc, deduction) => acc + deduction, 0)
+}
+
+const calculateDeductionAmount = (deduction, effectiveIncome) => {
+    if (deduction.deductionType === 'percent') {
+        return (deduction.amount / 100) * effectiveIncome
+    }
+    return deduction.amount
 }

@@ -41,3 +41,10 @@ export const setPostgradLoan = (postgradLoan) => {
         postgradLoan: postgradLoan
     }
 }
+
+export const setExtraInput = (extraInput) => {
+    return {
+        type: actionTypes.SET_EXTRA_INPUT,
+        extraInput: extraInput
+    }
+}

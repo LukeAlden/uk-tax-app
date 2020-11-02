@@ -7,7 +7,15 @@ const initialState = {
         pension: 0,
         pensionType: 'percent',
         undergradLoan: false,
-        postgradLoan: false
+        postgradLoan: false,
+        extraInput: [
+            {
+                id: "extraInput-" + new Date().getUTCMilliseconds(),
+                amount: null,
+                deductionType: 'percent',
+                pretax: false
+            }
+        ]
     }
 }
 
@@ -26,7 +34,7 @@ const updateInput = (state, input) => {
             ...input
         }
     }
-    // console.log(newState)
+    console.log(newState)
     return newState
 }
 
@@ -50,6 +58,10 @@ const setPostgradLoan = (state, action) => {
     return updateInput(state, {postgradLoan: action.postgradLoan})
 }
 
+const setExtraInput = (state, action) => {
+    return updateInput(state, {extraInput: action.extraInput})
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.RENDER_RESULTS: return renderResults(state, action);
@@ -58,6 +70,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SET_PENSION_TYPE: return setPensionType(state, action);
         case actionTypes.SET_UNDERGRAD_LOAN: return setUndergradLoan(state, action);
         case actionTypes.SET_POSTGRAD_LOAN: return setPostgradLoan(state, action);
+        case actionTypes.SET_EXTRA_INPUT: return setExtraInput(state, action);
         default:
             return state;
     }

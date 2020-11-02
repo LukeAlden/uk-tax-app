@@ -5,7 +5,7 @@ import * as actions from '../../../store/actions/taxCalculator'
 
 const UndergraduateLoan = (props) => (
     <div>
-        <label htmlFor="undergradLoan">Do you have a type 2 undergrauate loan?</label>
+        <label htmlFor="undergradLoan">Do you have a type 2 undergraduate loan?</label>
         <input
             id="undergradLoan"
             style={{ margin: "10px" }}

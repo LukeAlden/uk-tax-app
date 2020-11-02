@@ -25,6 +25,7 @@ const getResults = (props) => (
         <p>Your pension contributions equal: £{parseFloat(props.pensionDeduction).toFixed(2)}</p>
         <p>Your undergraduate loan repayment is: £{props.undergradPayment.toFixed(2)}</p>
         <p>Your postgraduate loan repayment is: £{props.postgradPayment.toFixed(2)}</p>
+        <p>Your total additional reductions are: £{props.extraInputsSum.toFixed(2)}</p>
         <p>*These results were calculated after making a number of assumptions and are in no way guaranteed to be accurate.</p>
     </div>
 )
@@ -37,7 +38,8 @@ const mapStateToProps = state => {
         nationalInsurance: selector.selectNationalInsurance(state),
         pensionDeduction: selector.selectPensionDeduction(state),
         undergradPayment: selector.selectUndergradPayment(state),
-        postgradPayment: selector.selectPostgradPayment(state)
+        postgradPayment: selector.selectPostgradPayment(state),
+        extraInputsSum: selector.selectExtraInputsSum(state)
     }
 }
 
