@@ -32,7 +32,8 @@ const updateInput = (state, input) => {
         input: {
             ...state.input,
             ...input
-        }
+        },
+        shouldRenderResults: false
     }
     console.log(newState)
     return newState

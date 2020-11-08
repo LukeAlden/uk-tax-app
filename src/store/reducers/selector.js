@@ -28,12 +28,13 @@ const studentLoan = {
 // we can eventually use Reselect here for performance optimisation
 
 export const selectTakeHomePay = (state) => {
-    return selectTaxableIncome(state)
+    const withoutExtraPostTaxDeductions = selectTaxableIncome(state)
         - selectIncomeTax(state)
         - selectNationalInsurance(state)
         - selectUndergradPayment(state)
         - selectPostgradPayment(state)
-        - extraPostTaxDeduction(state)
+
+        return withoutExtraPostTaxDeductions - extraPostTaxDeduction(state, withoutExtraPostTaxDeductions)
 }
 
 export const selectTaxableIncome = (state) => {
@@ -88,7 +89,7 @@ export const selectExtraInputs = state => {
 }
 
 export const selectExtraInputsSum = state => {
-    return extraPreTaxDeduction(state) + extraPostTaxDeduction(state)
+    return extraPreTaxDeduction(state) + extraPostTaxDeduction(state, selectTakeHomePay(state))
 }
 
 const extraPreTaxDeduction = state => {
@@ -98,10 +99,10 @@ const extraPreTaxDeduction = state => {
         .reduce((acc, deduction) => acc + deduction, 0)
 }
 
-const extraPostTaxDeduction = state => {
+const extraPostTaxDeduction = (state, takeHomePay) => {
     const preTaxDeductions = selectExtraInputs(state).filter(deduction => !deduction.pretax)
     return preTaxDeductions
-        .map(deduction => calculateDeductionAmount(deduction))
+        .map(deduction => calculateDeductionAmount(deduction, takeHomePay))
         .reduce((acc, deduction) => acc + deduction, 0)
 }
 

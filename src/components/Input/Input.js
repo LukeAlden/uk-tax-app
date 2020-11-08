@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import BaseIncome from './fields/BaseIncome'
@@ -9,30 +9,28 @@ import PostgraduateLoan from './fields/PostgraduateLoan'
 import * as actions from '../../store/actions/taxCalculator'
 import ExtraInput from './fields/ExtraInput';
 
-class Input extends Component {
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.submit}>
-                    <button type="submit" style={{ display: "none" }}>Submit</button>
-                    <BaseIncome />
-                    <Pension />
-                    <UndergraduateLoan />
-                    <PostgraduateLoan />
-                    <ExtraInput />
-                </form>
-                <button
-                    style={{ margin: "10px" }}
-                    onClick={this.submit}>Calculate Tax!</button>
-            </div>
-        )
-    }
+const Input = (props) => (
+    <div>
+        <form onSubmit={event => submit(event, props)}>
+            <button type="submit" style={{ display: "none" }}>Submit</button>
+            <BaseIncome />
+            <Pension />
+            <UndergraduateLoan />
+            <PostgraduateLoan />
+            <ExtraInput />
+        </form>
+        <button
+            style={{ margin: "10px" }}
+            onClick={event => submit(event, props)}>Calculate Tax!</button>
+    </div>
+)
 
-    submit = (event) => {
-        event.preventDefault();
-        this.props.onSubmit();
-    }
+
+const submit = (event, props) => {
+    event.preventDefault();
+    props.onSubmit();
 }
+
 
 const mapDispatchToProps = dispatch => {
     return {
