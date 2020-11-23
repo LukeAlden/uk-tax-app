@@ -1,7 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
+import { CSSTransition } from 'react-transition-group'
 
-import * as selector from '../../store/reducers/selector';
+import * as selector from '../../store/reducers/selector'
+
+import classes from './Result.module.css'
 
 const results = (props) => {
     if (!props.shouldRenderResults) {
@@ -18,16 +21,27 @@ const getResultsPlaceholder = () => (
 )
 
 const getResults = (props) => (
-    <div>
-        <p>Your net income is: £{props.takeHomePay.toFixed(2)}</p>
-        <p>Income tax paid: £{props.incomeTax.toFixed(2)}</p>
-        <p>National insurance paid: £{props.nationalInsurance.toFixed(2)}</p>
-        <p>Your pension contributions equal: £{parseFloat(props.pensionDeduction).toFixed(2)}</p>
-        <p>Your undergraduate loan repayment is: £{props.undergradPayment.toFixed(2)}</p>
-        <p>Your postgraduate loan repayment is: £{props.postgradPayment.toFixed(2)}</p>
-        <p>Your total additional reductions are: £{props.extraInputsSum.toFixed(2)}</p>
-        <p>*These results were calculated after making a number of assumptions and are in no way guaranteed to be accurate.</p>
-    </div>
+    <CSSTransition
+        in
+        appear
+        mountOnEnter
+        unmountOnExit
+        timeout={800}
+        classNames={{
+            ...classes
+        }}
+    >
+        <div>
+            <p>Your net income is: £{props.takeHomePay.toFixed(2)}</p>
+            <p>Income tax paid: £{props.incomeTax.toFixed(2)}</p>
+            <p>National insurance paid: £{props.nationalInsurance.toFixed(2)}</p>
+            <p>Your pension contributions equal: £{parseFloat(props.pensionDeduction).toFixed(2)}</p>
+            <p>Your undergraduate loan repayment is: £{props.undergradPayment.toFixed(2)}</p>
+            <p>Your postgraduate loan repayment is: £{props.postgradPayment.toFixed(2)}</p>
+            <p>Your total additional reductions are: £{props.extraInputsSum.toFixed(2)}</p>
+            <p>*These results were calculated after making a number of assumptions and are in no way guaranteed to be accurate.</p>
+        </div>
+    </CSSTransition>
 )
 
 const mapStateToProps = state => {
