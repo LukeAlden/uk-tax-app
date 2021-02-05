@@ -11,7 +11,7 @@ const initialState = {
         extraInput: [
             {
                 id: "extraInput-" + new Date().getUTCMilliseconds(),
-                amount: null,
+                amount: 0,
                 deductionType: 'percent',
                 pretax: false
             }
@@ -35,7 +35,6 @@ const updateInput = (state, input) => {
         },
         shouldRenderResults: false
     }
-    console.log(newState)
     return newState
 }
 
