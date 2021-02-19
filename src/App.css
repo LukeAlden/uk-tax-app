@@ -38,6 +38,14 @@
 }
 
 .row {
-  padding-top: 5px;
+  margin-top: 5px;
   align-items: center;
+}
+
+.btn-success {
+  margin-top: 5px;
+}
+
+.hidden {
+  display: none
 }

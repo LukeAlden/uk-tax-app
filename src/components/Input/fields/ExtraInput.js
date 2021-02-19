@@ -93,9 +93,11 @@ const ExtraInput = (props) => {
       </Row>
       {extraInput}
       <Row>
-        <Button style={{ margin: "10px" }} onClick={(event) => addExtraField(event, props)} onMouseDown={(e) => e.preventDefault()}>
-          Add Deduction
-        </Button>
+        <Col xs={12}>
+          <Button onClick={(event) => addExtraField(event, props)} onMouseDown={(e) => e.preventDefault()}>
+            Add Deduction
+          </Button>
+        </Col>
       </Row>
     </div>
   );
