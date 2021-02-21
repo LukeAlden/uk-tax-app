@@ -34,7 +34,7 @@ const amountChanged = (event, id, props) => {
       }
       return {
         ...input,
-        amount: parseFloat(amount),
+        amount: amount === "" ? 0 : parseFloat(amount),
       };
     })
   );
