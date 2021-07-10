@@ -1,26 +1,26 @@
 const tax = {
-    allowance: 12500,
+    allowance: 12570,
     basicRate: 0.2,
-    lowerThreshold: 50000,
+    lowerThreshold: 50270,
     higherRate: 0.4,
     higherThreshold: 150000,
     additionalRate: 0.45
 }
 
 const nationalInsurance = {
-    allowance: 9504.12,
+    allowance: 9568,
     lowerRate: 0.12,
-    threshold: 50004,
+    threshold: 50284,
     higherRate: 0.02
 }
 
 const studentLoan = {
     ug: {
-        threshold: 26568,
+        threshold: 27248,
         rate: 0.09
     },
     pg: {
-        threshold: 21000,
+        threshold: 20956,
         rate: 0.06
     }
 }
