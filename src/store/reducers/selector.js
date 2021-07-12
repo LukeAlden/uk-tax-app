@@ -58,7 +58,7 @@ export const selectNationalInsurance = (state) => {
     const lowerRateIncome = Math.min(Math.max(state.input.income - nationalInsurance.allowance, 0), nationalInsurance.threshold - nationalInsurance.allowance)
     const lowerRateTax = lowerRateIncome * nationalInsurance.lowerRate
 
-    const higherRateIncome = Math.max(selectTaxableIncome(state) - nationalInsurance.threshold, 0)
+    const higherRateIncome = Math.max(state.input.income - nationalInsurance.threshold, 0)
     const higherRateTax = higherRateIncome * nationalInsurance.higherRate
 
     return lowerRateTax + higherRateTax
