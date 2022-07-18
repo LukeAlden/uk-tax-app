@@ -8,10 +8,10 @@ const tax = {
 }
 
 const nationalInsurance = {
-    allowance: 9568,
-    lowerRate: 0.12,
-    threshold: 50284,
-    higherRate: 0.02
+    allowance: 12576,
+    lowerRate: 0.1325,
+    threshold: 50268,
+    higherRate: 0.0325
 }
 
 const studentLoan = {
